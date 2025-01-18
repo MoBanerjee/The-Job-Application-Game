@@ -7,6 +7,7 @@ import Progress from './Progress';
 import HTMLExperience from './JobFields/HTMLExperience';
 import PhoneNumberAdd from './JobFields/PhoneNumberadd';
 import SalaryValidator from './JobFields/SalaryValidator';
+import RejectionCounter from './JobFields/RejectionCounter';
 
 function App() {
   const [step, setStep] = useState(0); // Track the current step
@@ -19,9 +20,9 @@ function App() {
     <div className="App">
       <h1>Job Application Game</h1>
       <JobApplicationForm step={step} handleNextStep={handleNextStep} />
-      <PhoneNumberAdd />
-      <SalaryValidator />
       <Progress step={step} />
+      <RejectionCounter/>
+      
     </div>
   );
 };
