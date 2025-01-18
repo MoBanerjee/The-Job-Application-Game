@@ -34,6 +34,7 @@ const RhymingTeamwork = ({ number, onValidation, onChange, value = '' }) => {
 
     // Always call onValidation with current state
     if (onValidation) {
+      console.log(onValidation)
       onValidation(isValidInput);
     }
   };

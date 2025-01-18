@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const PhoneNumberAdd = ({ number }) => {
+const PhoneNumberAdd = ({ number, onValidation }) => {
   // Generate a feasible random target sum (between 20 and 40 for 8 digits)
   const [targetSum] = useState(() => Math.floor(Math.random() * 21) + 20);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -31,6 +31,10 @@ const PhoneNumberAdd = ({ number }) => {
       setPhoneNumber(value);
     }
   };
+
+  useEffect(() => {
+    onValidation(isValid);
+  }, [isValid]);
 
   return (
     <div className="field-container" style={{ marginBottom: "20px" }}>

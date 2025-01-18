@@ -58,12 +58,14 @@ const JobApplicationForm = () => {
       case 0:
         return validationStates.email && validationStates.introduction;
       case 1:
-        return validationStates.fortune500 && validationStates.htmlExperience;
+        return validationStates.fortune500 && validationStates.htmlExperience && validationStates.phoneNumber;
       case 2:
-        return validationStates.phoneNumber && validationStates.rhyming;
+        return validationStates.rhyming;
       case 3:
         return validationStates.rejectionCounter && validationStates.coffeeChatCounter;
       case 4:
+        return validationStates.rejectionCounter && validationStates.coffeeChatCounter;
+      case 5:
         return validationStates.salaryValidator;
       default:
         return true;
