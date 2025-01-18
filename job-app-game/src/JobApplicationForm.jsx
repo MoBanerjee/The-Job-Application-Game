@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Step1Basics from '../steps/Step1Basics';
 import Step2Experience from '../steps/Step2Experience';
-import Step3RealTalk from '../steps/Step3RealTalk';
-import Name from './JobFields/Name';
-import Step4MoneyTalk from '../steps/Step4MoneyTalk';
+import Step3Teamwork from '../steps/Step3Teamwork';
+import Step4RealTalk from '../steps/Step4RealTalk';
+import Step5MoneyTalk from '../steps/Step5MoneyTalk';
 import FinalStep from '../steps/FinalStep';
 import Navigation from './components/Navigation';
-
 
 const JobApplicationForm = () => {
   const [step, setStep] = useState(0);
@@ -17,6 +16,8 @@ const JobApplicationForm = () => {
     introduction: '',
     fortune500: '',
     htmlExperience: '',
+    phoneNumber: '',
+    rhyming: '',
     rejectionCount: '',
     coffeeChats: '',
     salary: ''
@@ -28,6 +29,8 @@ const JobApplicationForm = () => {
     introduction: false,
     fortune500: false,
     htmlExperience: false,
+    phoneNumber: false,
+    rhyming: false,
     rejectionCounter: false,
     coffeeChatCounter: false,
     salaryValidator: false
@@ -57,8 +60,10 @@ const JobApplicationForm = () => {
       case 1:
         return validationStates.fortune500 && validationStates.htmlExperience;
       case 2:
-        return validationStates.rejectionCounter && validationStates.coffeeChatCounter;
+        return validationStates.phoneNumber && validationStates.rhyming;
       case 3:
+        return validationStates.rejectionCounter && validationStates.coffeeChatCounter;
+      case 4:
         return validationStates.salaryValidator;
       default:
         return true;
@@ -67,7 +72,7 @@ const JobApplicationForm = () => {
 
   // Navigate to the next or previous step
   const handleNextStep = (direction) => {
-    setStep((prevStep) => Math.max(0, Math.min(prevStep + direction, 4)));
+    setStep((prevStep) => Math.max(0, Math.min(prevStep + direction, 5)));
   };
 
   // Render the appropriate step
@@ -91,7 +96,7 @@ const JobApplicationForm = () => {
         );
       case 2:
         return (
-          <Step3RealTalk
+          <Step3Teamwork
             formData={formData}
             updateFormData={updateFormData}
             updateValidation={updateValidation}
@@ -99,13 +104,21 @@ const JobApplicationForm = () => {
         );
       case 3:
         return (
-          <Step4MoneyTalk
+          <Step4RealTalk
             formData={formData}
             updateFormData={updateFormData}
             updateValidation={updateValidation}
           />
         );
       case 4:
+        return (
+          <Step5MoneyTalk
+            formData={formData}
+            updateFormData={updateFormData}
+            updateValidation={updateValidation}
+          />
+        );
+      case 5:
         return <FinalStep formData={formData} />;
       default:
         return null;
@@ -115,7 +128,7 @@ const JobApplicationForm = () => {
   return (
     <div>
       {renderStep()}
-      {step < 4 && (
+      {step < 5 && (
         <Navigation
           step={step}
           handleNextStep={handleNextStep}
