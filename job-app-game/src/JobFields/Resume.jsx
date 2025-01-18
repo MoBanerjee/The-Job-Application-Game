@@ -58,9 +58,7 @@ const Resume = () => {
         <div className="item-container">
           <h2>yuck, that's a resume??</h2>
           <p>{feedbackText}</p>
-          <button onClick={() => setFeedbackText(null)}>
-            Clear Feedback
-          </button>
+
         </div>
       </div>
     );
