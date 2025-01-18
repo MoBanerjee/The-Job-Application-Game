@@ -154,7 +154,7 @@ const RejectionCounter = ({ number = 1, onValidation}) => {
           }}>
             {rulesPassed.doubleExp ? "✓" : "✗"}
           </span>
-          <span> at least double your experience (we all start somewhere)</span>
+          <span>Number of Rejections must be at least double your experience (we all start somewhere)</span>
         </div>
 
         {visibleRules >= 2 && (
