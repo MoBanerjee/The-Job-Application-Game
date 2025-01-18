@@ -69,7 +69,7 @@ const Resume = () => {
   return (
     <div className="container" onDragOver={allowDrag} onDrop={handleFileDrop}>
       <div className="item-container dropzone">
-        <h1>Please upload your Resume</h1>
+        <h1>Step 6: Resume</h1>
         <input 
           type="file"
           multiple
