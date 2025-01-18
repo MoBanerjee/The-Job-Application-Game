@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
+const ShortTextInputField = ({number, question, validateFunc, errMsg, successMsg="Good job!"}) => {
   let [inputValue, setInputValue] = useState('');
   let [valid, setValid] = useState(false);
   
@@ -20,6 +20,7 @@ const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
 
   const handleInputChange = (e) => {
     const { value } = e.target;
+    localStorage.setItem(number, value);
     setInputValue(value);
   };
 
@@ -45,7 +46,11 @@ const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
 
 
       {inputValue && !valid && <p style={{ color: 'red', marginTop: '8px' }}>{errMsg}</p>}
-      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}>valid</p>}
+      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}
+                                    dangerouslySetInnerHTML={{
+                                      __html: successMsg,
+                                    }}
+                                />}
     </div>
   );
 };
