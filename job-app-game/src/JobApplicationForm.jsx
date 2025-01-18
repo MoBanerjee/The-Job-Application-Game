@@ -1,78 +1,127 @@
 import React, { useState } from 'react';
-import LongTextInputField from './components/LongTextInputField'
-import ShortTextInputField from './components/ShortTextInputField';
-import Email from './JobFields/Email';
+import Step1Basics from '../steps/Step1Basics';
+import Step2Experience from '../steps/Step2Experience';
+import Step3RealTalk from '../steps/Step3RealTalk';
 import Name from './JobFields/Name';
-import PreviousCompanyFortune500 from './JobFields/PreviousCompanyFortune500';
+import Step4MoneyTalk from '../steps/Step4MoneyTalk';
+import FinalStep from '../steps/FinalStep';
+import Navigation from './components/Navigation';
 
 
-const JobApplicationForm = ({ step, handleNextStep }) => {
+const JobApplicationForm = () => {
+  const [step, setStep] = useState(0);
+
+  // Form data for all steps
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    skills: '',
-    coverLetter: '',
+    introduction: '',
+    fortune500: '',
+    htmlExperience: '',
+    rejectionCount: '',
+    coffeeChats: '',
+    salary: ''
   });
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // Validation states for all steps
+  const [validationStates, setValidationStates] = useState({
+    email: false,
+    introduction: false,
+    fortune500: false,
+    htmlExperience: false,
+    rejectionCounter: false,
+    coffeeChatCounter: false,
+    salaryValidator: false
+  });
+
+  // Update form data
+  const updateFormData = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
-  // Step 1: Name and Email
-  if (step === 0) {
-    return (
-      <>
-        <div>
-          <Name />
-          <Email />
-          <PreviousCompanyFortune500 />
-          <LongTextInputField number={1} question="Be a team player. introduce yourself without letter i" validateFunc={(val)=> {return !val.includes('i');}} errMsg="no i"/>
-        </div>
-        
+  // Update validation state
+  const updateValidation = (field, isValid) => {
+    setValidationStates((prev) => ({
+      ...prev,
+      [field]: isValid
+    }));
+  };
 
-      </>
-    );
-  }
+  // Check if the current step is valid
+  const isStepValid = () => {
+    switch (step) {
+      case 0:
+        return validationStates.email && validationStates.introduction;
+      case 1:
+        return validationStates.fortune500 && validationStates.htmlExperience;
+      case 2:
+        return validationStates.rejectionCounter && validationStates.coffeeChatCounter;
+      case 3:
+        return validationStates.salaryValidator;
+      default:
+        return true;
+    }
+  };
 
-  // Step 2: Skills Section
-  if (step === 1) {
-    return (
-      <div>
-        <label>Skills:</label>
-        <input
-          type="text"
-          name="skills"
-          value={formData.skills}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleNextStep}>Next</button>
-      </div>
-    );
-  }
+  // Navigate to the next or previous step
+  const handleNextStep = (direction) => {
+    setStep((prevStep) => Math.max(0, Math.min(prevStep + direction, 4)));
+  };
 
-  // Step 3: Cover Letter Section
-  if (step === 2) {
-    return (
-      <div>
-        <label>Cover Letter:</label>
-        <textarea
-          name="coverLetter"
-          value={formData.coverLetter}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleNextStep}>Next</button>
-      </div>
-    );
-  }
+  // Render the appropriate step
+  const renderStep = () => {
+    switch (step) {
+      case 0:
+        return (
+          <Step1Basics
+            formData={formData}
+            updateFormData={updateFormData}
+            updateValidation={updateValidation}
+          />
+        );
+      case 1:
+        return (
+          <Step2Experience
+            formData={formData}
+            updateFormData={updateFormData}
+            updateValidation={updateValidation}
+          />
+        );
+      case 2:
+        return (
+          <Step3RealTalk
+            formData={formData}
+            updateFormData={updateFormData}
+            updateValidation={updateValidation}
+          />
+        );
+      case 3:
+        return (
+          <Step4MoneyTalk
+            formData={formData}
+            updateFormData={updateFormData}
+            updateValidation={updateValidation}
+          />
+        );
+      case 4:
+        return <FinalStep formData={formData} />;
+      default:
+        return null;
+    }
+  };
 
-  // Step 4: Final confirmation
   return (
     <div>
-      <h3>Congratulations! You've completed the application! Unfortunately there are so many talented candidates so we have to reject you.</h3>
-      <p>Name: {formData.name}</p>
-      <p>Email: {formData.email}</p>
-      <p>Skills: {formData.skills}</p>
-      <p>Cover Letter: {formData.coverLetter}</p>
+      {renderStep()}
+      {step < 4 && (
+        <Navigation
+          step={step}
+          handleNextStep={handleNextStep}
+          isStepValid={isStepValid}
+        />
+      )}
     </div>
   );
 };

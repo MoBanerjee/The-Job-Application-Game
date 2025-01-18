@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
+import SuccessMessage from '../components/SuccessMessage';
 
-const HTMLExperience = ({ number, question, errMsg, wordCountErrMsg }) => {
+const HTMLExperience = ({ number = 1 }) => {
   const [inputValue, setInputValue] = useState("");
   const [valid, setValid] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [visibleRules, setVisibleRules] = useState(1);
 
-  useEffect(() => {
-    if (inputValue) {
-      validateField(inputValue);
-    } else {
-      setValid(false);
-    }
-  }, [inputValue]);
+  const [rulesPassed, setRulesPassed] = useState({
+    wordCount: false,
+    htmlValid: false,
+    properSentences: false,
+  });
 
   const getCleanWordCount = (text) => {
-    // Remove HTML tags for word counting
     const cleanedText = text.replace(/<[^>]*>/g, "");
     return cleanedText.trim().split(/\s+/).filter((word) => word.length > 0).length;
   };
@@ -22,76 +21,79 @@ const HTMLExperience = ({ number, question, errMsg, wordCountErrMsg }) => {
   const validateField = async (input) => {
     setLoading(true);
 
-    // Basic content check
-    if (!input.trim()) {
-      setValid(false);
+    const wordCount = getCleanWordCount(input);
+    const hasEnoughWords = wordCount >= 50;
+    setRulesPassed((prev) => ({ ...prev, wordCount: hasEnoughWords }));
+
+    if (!hasEnoughWords) {
+      setVisibleRules(1);
       setLoading(false);
       return;
     }
 
-    // Split into separate HTML tag sections
-    const sections = input.trim().split(/(?=<[\w-]+>)/);
-    const validSections = sections.filter(section => section.trim().length > 0);
+    setVisibleRules(2);
 
-    // Validate each section
-    let isValid = true;
     const allowedTags = ['div', 'p', 'span', 'article', 'section', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    let htmlValid = true;
+    let sentencesValid = true;
 
-    for (const section of validSections) {
-      // Check if it's a valid HTML structure
+    const sections = input.trim().split(/(?=<[\w-]+>)/);
+    for (const section of sections) {
       const tagMatch = section.match(/<(\w+)>(.*?)<\/\1>/s);
-      if (!tagMatch) {
-        console.warn("Invalid HTML structure:", section);
-        isValid = false;
+      if (!tagMatch || !allowedTags.includes(tagMatch[1].toLowerCase())) {
+        htmlValid = false;
         break;
       }
 
-      const [_, tagName, content] = tagMatch;
-
-      // Check if it's an allowed tag
-      if (!allowedTags.includes(tagName.toLowerCase())) {
-        console.warn("Invalid tag:", tagName);
-        isValid = false;
-        break;
-      }
-
-      // Check if content is present
-      if (!content.trim()) {
-        console.warn("Empty content in tag:", tagName);
-        isValid = false;
-        break;
-      }
-
-      // Check if content is a complete sentence
-      if (!content.trim().match(/[A-Z][^.!?]*[.!?]$/)) {
-        console.warn("Content is not a proper sentence:", content);
-        isValid = false;
+      const content = tagMatch[2].trim();
+      if (!content || !content.match(/[A-Z][^.!?]*[.!?]$/)) {
+        sentencesValid = false;
         break;
       }
     }
 
-    setValid(isValid);
+    setRulesPassed((prev) => ({
+      ...prev,
+      htmlValid: htmlValid,
+      properSentences: sentencesValid,
+    }));
+
+    if (htmlValid) setVisibleRules(3);
+    setValid(htmlValid && sentencesValid && hasEnoughWords);
     setLoading(false);
   };
 
-  const handleInputChange = (e) => {
-    const { value } = e.target;
-    setInputValue(value);
+  useEffect(() => {
+    if (inputValue) {
+      validateField(inputValue);
+    } else {
+      setValid(false);
+      setRulesPassed({
+        wordCount: false,
+        htmlValid: false,
+        properSentences: false,
+      });
+      setVisibleRules(1);
+    }
+  }, [inputValue]);
+
+  const getMotivationalMessage = () => {
+    if (!inputValue) return "Time to wrap your experience in some HTML love! 💻";
+    if (getCleanWordCount(inputValue) < 20) return "Keep typing! Your tags are lonely! 🏷️";
+    if (!rulesPassed.htmlValid) return "Those tags look sus... 👀";
+    return "Now that's some clean markup! 🎯";
   };
 
   return (
     <div className="field-container" style={{ marginBottom: "20px" }}>
-      <label
-        htmlFor={`html-experience-${number}`}
-        style={{ display: "block", marginBottom: "8px" }}
-      >
-        {number}. {question}
+      <label style={{ display: "block", marginBottom: "16px", fontWeight: "500" }}>
+        {number}. The HTML Horror Story™
       </label>
+
       <textarea
-        id={`html-experience-${number}`}
         value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Write about your experience using HTML tags. Example: <div>I led a team of five developers.</div>"
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Show us your HTML prowess! Example: <div>I once fixed a bug by turning it off and on again.</div>"
         style={{
           padding: "8px",
           border: "1px solid #ccc",
@@ -99,51 +101,90 @@ const HTMLExperience = ({ number, question, errMsg, wordCountErrMsg }) => {
           width: "100%",
           minHeight: "200px",
           resize: "vertical",
+          fontFamily: "monospace",
         }}
       />
-      
-      {/* Requirements checklist */}
+
       <div style={{ marginTop: "12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-          <span style={{ 
-            color: getCleanWordCount(inputValue) >= 50 ? "#22c55e" : "#ef4444",
-            fontSize: "1.2em"
-          }}>
-            {getCleanWordCount(inputValue) >= 50 ? "✓" : "✗"}
+          <span
+            style={{
+              color: rulesPassed.wordCount ? "#22c55e" : "#ef4444",
+              fontSize: "1.2em",
+            }}
+          >
+            {rulesPassed.wordCount ? "✓" : "✗"}
           </span>
-          <span>At least 50 words ({getCleanWordCount(inputValue)} / 50)</span>
+          <span>At least 50 words (currently at {getCleanWordCount(inputValue)}) - your resume wasn't one line, right?</span>
         </div>
-        
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          {loading ? (
-            <span style={{ color: "#3b82f6" }}>⟳</span>
-          ) : (
-            <span style={{ 
-              color: valid ? "#22c55e" : "#ef4444",
-              fontSize: "1.2em"
-            }}>
-              {valid ? "✓" : "✗"}
+
+        {visibleRules >= 2 && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+            <span
+              style={{
+                color: rulesPassed.htmlValid ? "#22c55e" : "#ef4444",
+                fontSize: "1.2em",
+              }}
+            >
+              {rulesPassed.htmlValid ? "✓" : "✗"}
             </span>
-          )}
-          <span>Valid HTML tags and sentences</span>
-        </div>
+            <span>Valid HTML tags (because unclosed tags are like unfinished coffee chats)</span>
+          </div>
+        )}
+
+        {visibleRules >= 3 && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span
+              style={{
+                color: rulesPassed.properSentences ? "#22c55e" : "#ef4444",
+                fontSize: "1.2em",
+              }}
+            >
+              {rulesPassed.properSentences ? "✓" : "✗"}
+            </span>
+            <span>Complete sentences (capitalize and punctuate, just like those follow-up emails you never got)</span>
+          </div>
+        )}
       </div>
 
-      {/* Helper text */}
-      <div style={{ marginTop: "8px", fontSize: "0.875em", color: "#666" }}>
-        Allowed tags: div, p, span, article, section, h1-h6
+      <div
+        style={{
+          marginTop: "12px",
+          fontSize: "0.9em",
+          color: "#666",
+          fontStyle: "italic",
+        }}
+      >
+        {getMotivationalMessage()}
+      </div>
+
+      {valid && <SuccessMessage message="Your HTML is as clean as your commit history claims to be!" emoji="🎨" />}
+
+      <div
+        style={{
+          marginTop: "12px",
+          fontSize: "0.875em",
+          color: "#666",
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+        }}
+      >
+        <span>Allowed tags:</span>
+        <code
+          style={{
+            backgroundColor: "#f1f1f1",
+            padding: "2px 4px",
+            borderRadius: "4px",
+            fontSize: "0.9em",
+          }}
+        >
+          div, p, span, article, section, h1-h6
+        </code>
+        <span>(just like your dating options, limited but functional)</span>
       </div>
     </div>
   );
-};
-
-HTMLExperience.defaultProps = {
-  number: 1,
-  question:
-    "In 50 words, describe your past experience. Each sentence must be wrapped in a valid HTML tag.",
-  errMsg:
-    "Please make sure each sentence is properly wrapped in HTML tags and is a complete sentence.",
-  wordCountErrMsg: "You must write at least 50 words. Please try again!",
 };
 
 export default HTMLExperience;
