@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const Email = ({ onValidation, onChange, value }) => {
+const Email = ({ number = 1, onValidation, onChange, value }) => {
+  const [inputValue, setInputValue] = useState(value || "");
   const [isValid, setIsValid] = useState(false);
 
   const validateEmail = (input) => {
@@ -12,45 +13,50 @@ const Email = ({ onValidation, onChange, value }) => {
     }
   };
 
+  useEffect(() => {
+    validateEmail(inputValue);
+  }, [inputValue]);
+
   const handleChange = (e) => {
     const newValue = e.target.value;
+    setInputValue(newValue);
     if (onChange) {
       onChange(newValue);
     }
-    validateEmail(newValue);
   };
 
-  // Validate initial value if provided
-  useEffect(() => {
-    if (value) {
-      validateEmail(value);
-    }
-  }, []);
-
   return (
-    <div style={{ marginBottom: "20px" }}>
+    <div className="field-container" style={{ marginBottom: "20px" }}>
       <label style={{ 
         display: "block", 
-        marginBottom: "8px",
+        marginBottom: "16px", 
+        fontWeight: "500",
         color: "#f8fafc"
       }}>
-        Enter your email
+        {number}. The Email Validation Experience™
       </label>
+
       <input
         type="email"
-        value={value}
+        value={inputValue}
         onChange={handleChange}
+        placeholder="yourname@example.com"
         style={{
           padding: "8px",
-          border: "1px solid #475569",
+          border: "1px solid #ccc",
           borderRadius: "4px",
           width: "100%",
-          backgroundColor: "#1e293b",
-          color: "#f8fafc"
+          fontFamily: "monospace",
         }}
       />
-      {isValid && (
-        <div style={{ color: "#22c55e", marginTop: "4px" }}>Good job!</div>
+      
+      {inputValue && !isValid && (
+        <div style={{ 
+          marginTop: "8px", 
+          fontSize: "0.875em" 
+        }}>
+          Please enter a valid email address
+        </div>
       )}
     </div>
   );
