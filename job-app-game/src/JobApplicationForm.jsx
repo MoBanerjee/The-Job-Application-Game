@@ -6,7 +6,8 @@ import Step4RealTalk from '../steps/Step4RealTalk';
 import Step5MoneyTalk from '../steps/Step5MoneyTalk';
 import FinalStep from '../steps/FinalStep';
 import Navigation from './components/Navigation';
-
+import Resume from './JobFields/Resume';
+import CoverLetter from './JobFields/CoverLetter';
 const JobApplicationForm = () => {
   const [step, setStep] = useState(0);
 
@@ -121,6 +122,10 @@ const JobApplicationForm = () => {
           />
         );
       case 5:
+         return <Resume/>;
+      case 6:
+        return <CoverLetter/>;
+      case 7:
         return <FinalStep formData={formData} />;
       default:
         return null;
