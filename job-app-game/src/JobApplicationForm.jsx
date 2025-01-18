@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import LongTextInputField from './components/LongTextInputField'
+
 
 const JobApplicationForm = ({ step, handleNextStep }) => {
   const [formData, setFormData] = useState({
@@ -16,21 +18,7 @@ const JobApplicationForm = ({ step, handleNextStep }) => {
   if (step === 0) {
     return (
       <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-        />
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleNextStep}>Next</button>
+        <LongTextInputField number={1} question="Be a team player. introduce yourself without letter i" validateFunc={(val)=> {return !val.includes('i');}} errMsg="no i"/>
       </div>
     );
   }
