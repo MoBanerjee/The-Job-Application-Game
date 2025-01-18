@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SuccessMessage from '../components/SuccessMessage';
 
-const SalaryValidator = ({ number = 1 }) => {
+const SalaryValidator = ({ number = 1, onValidation }) => {
   const [salary, setSalary] = useState('');
   const [overtime, setOvertime] = useState('');
   const [visibleRules, setVisibleRules] = useState(1);
@@ -12,6 +12,10 @@ const SalaryValidator = ({ number = 1 }) => {
     containsLuckyNumber: false,
     overtimeBalance: false
   });
+
+    useEffect(() => {
+      onValidation(rulesPassed.fiveDigits && rulesPassed.firstLastMatch && rulesPassed.middleSum && rulesPassed.containsLuckyNumber && rulesPassed.overtimeBalance)
+  }, [rulesPassed]);
 
   const validateInputs = () => {
     // Rule 1: Must be exactly 5 digits
