@@ -20,6 +20,7 @@ const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
 
   const handleInputChange = (e) => {
     const { value } = e.target;
+    localStorage.setItem(number, value);
     setInputValue(value);
   };
 
