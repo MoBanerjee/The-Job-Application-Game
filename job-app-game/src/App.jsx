@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import JobApplicationForm from './JobApplicationForm';
+import Progress from './Progress';
 
 function App() {
   const [step, setStep] = useState(0); // Track the current step
