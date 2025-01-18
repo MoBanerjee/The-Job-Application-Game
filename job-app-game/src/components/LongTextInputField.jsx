@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Field from './LongTextInputField'; // Assuming Field.js is in the same directory
 
-const LongTextInputField = ({number, question, validateFunc}) => {
+const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
   let [inputValue, setInputValue] = useState('');
   let [valid, setValid] = useState(false);
   
