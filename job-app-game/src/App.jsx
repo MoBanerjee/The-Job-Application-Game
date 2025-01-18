@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import JobApplicationForm from './JobApplicationForm';
 import Progress from './Progress';
+import HTMLExperience from './JobFields/HTMLExperience';
 
 function App() {
   const [step, setStep] = useState(0); // Track the current step
@@ -16,7 +17,7 @@ function App() {
     <div className="App">
       <h1>Job Application Game</h1>
       <JobApplicationForm step={step} handleNextStep={handleNextStep} />
-      
+      <HTMLExperience/>
       <Progress step={step} />
     </div>
   );
