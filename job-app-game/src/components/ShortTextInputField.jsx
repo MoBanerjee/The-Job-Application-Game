@@ -45,7 +45,7 @@ const ShortTextInputField = ({number, question, validateFunc, errMsg, onValidati
             padding: '8px',
             border: '1px solid #ccc',
             borderRadius: '4px',
-            width: '100%',
+            width: '400px',
             resize: 'vertical',
           }}
         />

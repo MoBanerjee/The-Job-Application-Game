@@ -58,7 +58,7 @@ const RhymingTeamwork = ({ number, onValidation, onChange, value = '' }) => {
 
   return (
     <div className="field-container" style={{ marginBottom: "20px" }}>
-      <label style={{ display: "block", marginBottom: "8px", color: "#f8fafc" }}>
+      <label style={{ display: "block", marginBottom: "8px"}}>
         {number}. In 50 words, tell us why teamwork is important. The last word of every sentence must rhyme.
       </label>
       <textarea
@@ -72,12 +72,11 @@ const RhymingTeamwork = ({ number, onValidation, onChange, value = '' }) => {
           width: "100%",
           minHeight: "200px",
           resize: "vertical",
-          color: "#f8fafc"
         }}
       />
       
       <div style={{ marginTop: "12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px", color: "#f8fafc" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
           <span style={{ 
             color: getCleanWordCount(value) >= 50 ? "#22c55e" : "#ef4444",
             fontSize: "1.2em"
@@ -87,7 +86,7 @@ const RhymingTeamwork = ({ number, onValidation, onChange, value = '' }) => {
           <span>At least 50 words ({getCleanWordCount(value)} / 50)</span>
         </div>
         
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#f8fafc" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px"}}>
           <span style={{ 
             color: isValid ? "#22c55e" : "#ef4444",
             fontSize: "1.2em"

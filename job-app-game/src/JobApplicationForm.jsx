@@ -130,7 +130,7 @@ const JobApplicationForm = () => {
   return (
     <div>
       {renderStep()}
-      {step < 5 && (
+      {step < 6 && (
         <Navigation
           step={step}
           handleNextStep={handleNextStep}

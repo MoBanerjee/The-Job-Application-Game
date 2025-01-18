@@ -5,7 +5,7 @@ import PhoneNumberAdd from '../src/JobFields/PhoneNumberAdd';
 
 const Step2Experience = ({ formData, updateFormData, updateValidation }) => (
   <div>
-    <h2 style={{ color: '#f8fafc', marginBottom: '24px' }}>Step 2: Your Journey</h2>
+    <h2 style={{marginBottom: '24px' }}>Step 2: Your Journey</h2>
     <PhoneNumberAdd 
         number={1}
         onValidation={(isValid) => updateValidation('phoneNumber', isValid)}

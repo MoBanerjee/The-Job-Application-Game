@@ -31,7 +31,6 @@ const Email = ({ number = 1, onValidation, onChange, value }) => {
         display: "block", 
         marginBottom: "16px", 
         fontWeight: "500",
-        color: "#f8fafc"
       }}>
         {number}. The Email Validation Experience™
       </label>

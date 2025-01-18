@@ -155,7 +155,7 @@ const SalaryValidator = ({ number = 1, onValidation }) => {
             <span style={{ color: rulesPassed.overtimeBalance ? "#22c55e" : "#ef4444", fontSize: "1.2em" }}>
               {rulesPassed.overtimeBalance ? "✓" : "✗"}
             </span>
-            <span>Your overtime preference can't be "Sleep is for the weak" (we care about your health!)</span>
+            <span>Your overtime preferences must be in moderation - we value work life balance (tilted a bit towards us) </span>
           </div>
         )}
       </div>

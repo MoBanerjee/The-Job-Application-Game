@@ -5,7 +5,7 @@ import './App.css'
 import JobApplicationForm from './JobApplicationForm';
 import Progress from './Progress';
 import HTMLExperience from './JobFields/HTMLExperience';
-import PhoneNumberAdd from './JobFields/PhoneNumberadd';
+import PhoneNumberAdd from './JobFields/PhoneNumberAdd';
 import SalaryValidator from './JobFields/SalaryValidator';
 import RejectionCounter from './JobFields/RejectionCounter';
 import CoffeeChatCounter from './JobFields/CoffeeChatCounter';

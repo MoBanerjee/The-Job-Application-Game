@@ -1,5 +1,4 @@
 import React from 'react';
-import PhoneNumberAdd from '../src/JobFields/PhoneNumberadd';
 import RhymingTeamwork from '../src/JobFields/RhymingTeamWork';
 
 const Step3Teamwork = ({ formData, updateFormData, updateValidation }) => {
@@ -11,7 +10,7 @@ const Step3Teamwork = ({ formData, updateFormData, updateValidation }) => {
 
   return (
     <div>
-      <h2 style={{ color: '#f8fafc', marginBottom: '24px' }}>Step 3: Teamwork</h2>
+      <h2 style={{marginBottom: '24px' }}>Step 3: Teamwork</h2>
       
       
 
