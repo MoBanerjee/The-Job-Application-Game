@@ -2,17 +2,22 @@
 import React, { useState, useEffect } from 'react';
 import SuccessMessage from '../components/SuccessMessage';
 
-const RejectionCounter = ({ number = 1 }) => {
+const RejectionCounter = ({ number = 1, onValidation}) => {
   const [count, setCount] = useState('');
   const [visibleRules, setVisibleRules] = useState(1);
   const [yearsExp, setYearsExp] = useState('');
   const [connections, setConnections] = useState('');
   
+
   const [rulesPassed, setRulesPassed] = useState({
     doubleExp: false,
     underConnections: false,
     painfullyFunny: false
   });
+
+  useEffect(() => {
+    onValidation(rulesPassed.doubleExp && rulesPassed.underConnections && rulesPassed.painfullyFunny)
+}, [rulesPassed]);
 
   // Validate all rules
   const validateCount = (value, exp, conn) => {

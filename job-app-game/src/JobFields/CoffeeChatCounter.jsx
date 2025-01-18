@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import SuccessMessage from '../components/SuccessMessage';
 
-const CoffeeChatCounter = ({ number = 1 }) => {
+const CoffeeChatCounter = ({ number = 1, onValidation}) => {
   const [chatsScheduled, setChatsScheduled] = useState('');
   const [ghosted, setGhosted] = useState('');
   const [coffeeSpent, setCoffeeSpent] = useState('');
@@ -13,6 +13,9 @@ const CoffeeChatCounter = ({ number = 1 }) => {
     ghostRatio: false,
     coffeeExpense: false
   });
+    useEffect(() => {
+      onValidation(rulesPassed.minChats && rulesPassed.ghostRatio && rulesPassed.coffeeExpense)
+  }, [rulesPassed]);
 
   const validateInputs = (chats, ghosts, coffee) => {
     const numChats = parseInt(chats);
