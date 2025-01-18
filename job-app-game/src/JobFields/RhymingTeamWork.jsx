@@ -67,12 +67,11 @@ const RhymingTeamwork = ({ number, onValidation, onChange, value = '' }) => {
         placeholder="Write at least 50 words. The last words of every sentence must rhyme."
         style={{
           padding: "8px",
-          border: "1px solid #475569",
+          border: "1px solid #ccc",
           borderRadius: "4px",
           width: "100%",
           minHeight: "200px",
           resize: "vertical",
-          backgroundColor: "#1e293b",
           color: "#f8fafc"
         }}
       />
