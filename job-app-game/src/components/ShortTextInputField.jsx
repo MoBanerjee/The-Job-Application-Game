@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-const ShortTextInputField = ({number, question, validateFunc, errMsg, successMsg="Good job!"}) => {
+const ShortTextInputField = ({number, question, validateFunc, errMsg, onValidation, successMsg="Good job!"}) => {
   let [inputValue, setInputValue] = useState('');
   let [valid, setValid] = useState(false);
   
   useEffect(() => {
     validateField(inputValue);
   }, [inputValue]);
+
+  useEffect(() => {
+    if (onValidation) {
+      onValidation(valid);
+    }
+  }, [valid]);
 
   const validateField = () => {
     if (!inputValue) setValid(false);

@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 
 const SubmitButton = ({ isValid, setIsWin }) => {
-    console.log("isValid:", isValid);  // Check the value of isValid
-    console.log("setIsWin:", setIsWin);  // Check if setIsWin is a function
     const handleClick = () => {
     if (isValid) {
         alert("Application is not valid yet. Try again!");
     }
     else {
-        console.log(setIsWin)
-        console.log(isValid)
         setIsWin(true);
     }
     

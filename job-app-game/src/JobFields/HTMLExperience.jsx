@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import SuccessMessage from '../components/SuccessMessage';
 
-const HTMLExperience = ({ number = 1 }) => {
+const HTMLExperience = ({ number = 4, onValidation }) => {
   const [inputValue, setInputValue] = useState("");
   const [valid, setValid] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visibleRules, setVisibleRules] = useState(1);
+
+  useEffect(() => {
+    onValidation(valid);
+  }, [valid]);
 
   const [rulesPassed, setRulesPassed] = useState({
     wordCount: false,
