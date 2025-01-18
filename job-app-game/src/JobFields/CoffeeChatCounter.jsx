@@ -62,7 +62,7 @@ const CoffeeChatCounter = ({ number = 1 }) => {
   return (
     <div className="field-container" style={{ marginBottom: "20px" }}>
       <label style={{ display: "block", marginBottom: "16px", fontWeight: "500" }}>
-        {number}. The Coffee Chat Chronicles™
+        {number}. Networking history...
       </label>
 
       <div style={{ display: "flex", gap: "12px", marginBottom: "16px" }}>
