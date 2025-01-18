@@ -75,7 +75,7 @@ const JobApplicationForm = () => {
 
   // Navigate to the next or previous step
   const handleNextStep = (direction) => {
-    setStep((prevStep) => Math.max(0, Math.min(prevStep + direction, 5)));
+    setStep((prevStep) => Math.max(0, Math.min(prevStep + direction, 7)));
   };
 
   // Render the appropriate step
@@ -135,7 +135,7 @@ const JobApplicationForm = () => {
   return (
     <div>
       {renderStep()}
-      {step < 6 && (
+      {step < 7 && (
         <Navigation
           step={step}
           handleNextStep={handleNextStep}
