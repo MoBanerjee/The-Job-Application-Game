@@ -46,7 +46,7 @@ const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
 
 
       {inputValue && !valid && <p style={{ color: 'red', marginTop: '8px' }}>{errMsg}</p>}
-      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}>valid</p>}
+      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}>Good job!</p>}
     </div>
   );
 };
