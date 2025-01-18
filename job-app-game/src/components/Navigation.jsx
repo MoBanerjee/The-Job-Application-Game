@@ -24,7 +24,7 @@ const Navigation = ({ step, handleNextStep, isStepValid }) => (
         ← Back
       </button>
     )}
-    {step < 5 && (
+    {step < 7 && (
       <button
         onClick={() => handleNextStep(1)} // Next
         disabled={!isStepValid()}
