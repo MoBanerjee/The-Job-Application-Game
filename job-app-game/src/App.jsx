@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Job Application Game</h1>
+      <h1>The Job Application Game</h1>
       <JobApplicationForm step={step} handleNextStep={handleNextStep} />
       <Progress step={step} />
 

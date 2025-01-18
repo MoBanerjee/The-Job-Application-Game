@@ -2,7 +2,7 @@ import React from 'react';
 
 const FinalStep = ({ formData }) => (
   <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-    <h2 style={{ color: '#f8fafc', marginBottom: '24px' }}>Application Complete!</h2>
+    <h2 style={{ marginBottom: '24px' }}>Application Complete!</h2>
     <div style={{
       padding: '20px',
       backgroundColor: 'rgba(51, 65, 85, 0.5)',
