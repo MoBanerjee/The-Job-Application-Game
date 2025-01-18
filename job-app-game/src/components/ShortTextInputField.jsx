@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
+const ShortTextInputField = ({number, question, validateFunc, errMsg}) => {
   let [inputValue, setInputValue] = useState('');
   let [valid, setValid] = useState(false);
   
@@ -29,8 +29,9 @@ const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
       <label htmlFor={question} style={{ display: 'block', marginBottom: '8px' }}>
         {number}. {question}
       </label>
-      <textarea
+      <input
           id={question}
+          type="text"
           value={inputValue}
           onChange={handleInputChange}
           style={{
@@ -49,4 +50,4 @@ const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
   );
 };
 
-export default LongTextInputField;
+export default ShortTextInputField;
