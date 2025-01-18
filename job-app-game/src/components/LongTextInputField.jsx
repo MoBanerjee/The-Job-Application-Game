@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
+const LongTextInputField = ({number, question, validateFunc, errMsg, successMsg="Good job!"}) => {
   let [inputValue, setInputValue] = useState('');
   let [valid, setValid] = useState(false);
   
@@ -45,7 +45,7 @@ const LongTextInputField = ({number, question, validateFunc, errMsg}) => {
 
 
       {inputValue && !valid && <p style={{ color: 'red', marginTop: '8px' }}>{errMsg}</p>}
-      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}>valid</p>}
+      {inputValue && valid && <p style={{ color: 'green', marginTop: '8px' }}>{successMsg}</p>}
     </div>
   );
 };
