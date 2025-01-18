@@ -69,7 +69,7 @@ const CoverLetter = () => {
   return (
     <div className="container" onDragOver={allowDrag} onDrop={handleFileDrop}>
       <div className="item-container dropzone">
-        <h1>Please upload your Cover Letter</h1>
+        <h1>Step 7: Cover Letter</h1>
         <input 
           type="file"
           multiple
