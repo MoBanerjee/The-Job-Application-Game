@@ -11,9 +11,9 @@ const Email = () => {
   return (
     <ShortTextInputField
         number={2}
-        question="Enter your email"
+        question="Enter your email."
         validateFunc={validateEmail}
-        errMsg="Please enter a valid email"
+        errMsg="Please enter a valid email."
     />
   );
 };

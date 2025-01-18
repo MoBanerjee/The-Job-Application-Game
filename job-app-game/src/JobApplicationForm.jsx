@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import LongTextInputField from './components/LongTextInputField'
 import ShortTextInputField from './components/ShortTextInputField';
 import Email from './JobFields/Email';
+import Name from './JobFields/Name';
 import PreviousCompanyFortune500 from './JobFields/PreviousCompanyFortune500';
+
 
 const JobApplicationForm = ({ step, handleNextStep }) => {
   const [formData, setFormData] = useState({
@@ -19,11 +21,16 @@ const JobApplicationForm = ({ step, handleNextStep }) => {
   // Step 1: Name and Email
   if (step === 0) {
     return (
-      <div>
-        <Email />
-        <PreviousCompanyFortune500 />
-        <LongTextInputField number={1} question="Be a team player. introduce yourself without letter i" validateFunc={(val)=> {return !val.includes('i');}} errMsg="no i"/>
-      </div>
+      <>
+        <div>
+          <Name />
+          <Email />
+          <PreviousCompanyFortune500 />
+          <LongTextInputField number={1} question="Be a team player. introduce yourself without letter i" validateFunc={(val)=> {return !val.includes('i');}} errMsg="no i"/>
+        </div>
+        
+
+      </>
     );
   }
 

@@ -12,10 +12,8 @@ const PreviousCompanyFortune500 = () => {
             throw new Error("Failed to fetch file");
         }
         const text = await response.text();
-        console.log(text)
         const companies = text.split('\n').map((company) => company.trim().toLowerCase());
         setFortune500Companies(companies);
-        console.log(companies)
         } catch (error) {
         console.error('Error loading Fortune 500 companies:', error);
         // set some famous names as a fallback
@@ -36,8 +34,8 @@ const PreviousCompanyFortune500 = () => {
         question="What is your previous company? (We need prior experience for this entry-level role.)"
         validateFunc={validateCompany}
         errMsg="Hmm, never heard of that company. Prior experience in a Fortune 500 company is highly recommended to show that you are competent enough for the job."
-        successMsg={`Nice, your background aligns with our needs!
-                    However, to make sure you're truly committed to us, <strong>your future answers must avoid any 3-character substrings in your ex-company's name. (tbi)</strong>`}
+        successMsg={`Nice, your background aligns with our needs! Why are you even applying here? Did you not get a return offer?
+                    To make sure you're truly committed to us, <strong>your future answers must avoid any 3-character substrings in your ex-company's name. (tbi if got time)</strong>`}
     />
   );
 };
