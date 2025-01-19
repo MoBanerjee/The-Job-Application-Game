@@ -44,7 +44,7 @@ const Email = ({ number = 1, onValidation, onChange, value }) => {
           padding: "8px",
           border: "1px solid #ccc",
           borderRadius: "4px",
-          width: "100%",
+          width: "400px",
           fontFamily: "monospace",
         }}
       />
