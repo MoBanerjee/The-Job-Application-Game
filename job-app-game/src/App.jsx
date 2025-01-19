@@ -34,7 +34,6 @@ function App() {
           THE JOB APPLICATION GAME
         </h1>
         <JobApplicationForm step={step} handleNextStep={handleNextStep} />
-        <Progress step={step} />
       </div>
     </div>
   )
