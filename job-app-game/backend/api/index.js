@@ -12,7 +12,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 5000;
 const genAI = new GoogleGenerativeAI("AIzaSyBpUN2lbREgDcTs7MGo7QnSXikSbN8vU3M");
-CORS_ORIGIN="http://localhost:5173"
+CORS_ORIGIN="https://the-job-application-game.vercel.app/"
 app.use(cors({ origin: CORS_ORIGIN }));
 const crypto = require('crypto');
 
