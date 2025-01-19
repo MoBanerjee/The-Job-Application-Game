@@ -102,7 +102,7 @@ const HTMLExperience = ({ number = 4, onValidation }) => {
           padding: "8px",
           border: "1px solid #ccc",
           borderRadius: "4px",
-          width: "100%",
+          width: "400px",
           minHeight: "200px",
           resize: "vertical",
           fontFamily: "monospace",
