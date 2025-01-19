@@ -106,7 +106,7 @@ const AboutYourselfNoI = ({ number = 2, onValidation }) => {
         }}
       />
 
-      <div style={{ marginTop: "12px" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
           <span style={{
             color: rulesPassed.charCount ? "#22c55e" : "#ef4444",
@@ -158,7 +158,7 @@ const AboutYourselfNoI = ({ number = 2, onValidation }) => {
         fontSize: "0.875em",
         color: "#666",
         display: "flex",
-        alignItems: "center",
+        justifyContent: "center",
         gap: "4px",
       }}>
         <span>Pro tip:</span>
