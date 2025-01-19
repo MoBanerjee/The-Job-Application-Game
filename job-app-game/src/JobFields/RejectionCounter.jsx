@@ -85,11 +85,11 @@ const RejectionCounter = ({ number = 1, onValidation}) => {
 
   return (
     <div className="field-container" style={{ marginBottom: "20px" }}>
-      <label style={{ display: "block", marginBottom: "16px", fontWeight: "500" }}>
+      <label style={{ display: "block", marginBottom: "16px", fontWeight: "500"}}>
         {number}. The Rejection Collection™
       </label>
 
-      <div style={{ display: "flex", gap: "12px", marginBottom: "16px" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div>
           <label style={{ fontSize: "0.9em", color: "#666" }}>Years of Experience:</label>
           <input
@@ -146,7 +146,7 @@ const RejectionCounter = ({ number = 1, onValidation}) => {
       </div>
 
       {/* Rules display */}
-      <div style={{ marginTop: "12px" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
           <span style={{ 
             color: rulesPassed.doubleExp ? "#22c55e" : "#ef4444",

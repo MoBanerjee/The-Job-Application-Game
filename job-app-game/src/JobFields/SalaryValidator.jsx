@@ -73,8 +73,7 @@ const SalaryValidator = ({ number = 1, onValidation }) => {
       <label style={{ display: "block", marginBottom: "16px", fontWeight: "500" }}>
         {number}. What is your expected Salary?
       </label>
-
-      <div style={{ display: "flex", gap: "12px", marginBottom: "16px" }}>
+      <div  style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div>
           <label style={{ fontSize: "0.9em", color: "#666" }}>Expected Salary:</label>
           <input

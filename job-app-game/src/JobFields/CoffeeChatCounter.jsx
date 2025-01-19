@@ -83,7 +83,7 @@ const CoffeeChatCounter = ({ number = 1, onValidation }) => {
         {number}. Networking history...
       </label>
 
-      <div style={{ display: "flex", gap: "12px", marginBottom: "16px" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div>
           <label style={{ fontSize: "0.9em", color: "#666" }}>
             Chats Scheduled:
@@ -146,7 +146,7 @@ const CoffeeChatCounter = ({ number = 1, onValidation }) => {
       </div>
 
       {/* Rules display */}
-      <div style={{ marginTop: "12px" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", justifyContent: "center" }}>
         <div
           style={{
             display: "flex",
